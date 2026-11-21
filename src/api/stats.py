@@ -154,7 +154,8 @@ def to_csv(data: dict, days: int, end: _dt.date) -> str:
     """The report's spreadsheet: one row per day and kind of check over the last `days` days (empty days included, so
     a chart made from it has no gaps). The same counts as the dashboard; nothing but dates, fixed names and numbers."""
     span = [(end - _dt.timedelta(days=i)).isoformat() for i in range(days - 1, -1, -1)]
-    lines = [",".join(("date", "kind", "checks") + CSV_OUTCOMES + ("matched_a_dyci_post",))]
+    # Column names: "input_type" (text, link, picture) and "total_verifications" (the panel's request, 2026-11-21).
+    lines = [",".join(("date", "input_type", "total_verifications") + CSV_OUTCOMES + ("matched_a_dyci_post",))]
     for key in span:
         d = data.get(key, {})
         for kind in KINDS:

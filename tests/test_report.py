@@ -18,15 +18,15 @@ def test_one_row_per_day_and_kind_with_the_dashboards_counts():
     data = {"2026-10-25": {"text": {"outcomes": {"supported": 2, "contradicted": 1}, "matched": 3},
                            "picture": {"outcomes": {"level_4": 1}, "matched": 1}}}
     rows = list(csv.DictReader(io.StringIO(st.to_csv(data, 3, DAY))))
-    assert [(r["date"], r["kind"]) for r in rows] == [(d, k) for d in ("2026-10-24", "2026-10-25", "2026-10-26")
+    assert [(r["date"], r["input_type"]) for r in rows] == [(d, k) for d in ("2026-10-24", "2026-10-25", "2026-10-26")
                                                       for k in ("text", "link", "picture")]
     text = rows[3]
-    assert text["checks"] == "3" and text["supported"] == "2" and text["contradicted"] == "1"
+    assert text["total_verifications"] == "3" and text["supported"] == "2" and text["contradicted"] == "1"
     assert text["matched_a_dyci_post"] == "3" and text["level_4"] == ""          # a picture level is not a text outcome
     assert rows[5]["level_4"] == "1" and rows[5]["supported"] == ""
-    assert all(r["checks"] == "0" for r in rows[:3])                            # empty days are rows too
+    assert all(r["total_verifications"] == "0" for r in rows[:3])                            # empty days are rows too
     summary = st.summarise(data, 3, DAY)
-    assert sum(int(r["checks"]) for r in rows) == summary["total"]
+    assert sum(int(r["total_verifications"]) for r in rows) == summary["total"]
 
 
 def test_the_spreadsheet_holds_counts_only_and_is_off_with_the_dashboard(api_settings, monkeypatch, tmp_path):
@@ -46,7 +46,7 @@ def test_the_spreadsheet_holds_counts_only_and_is_off_with_the_dashboard(api_set
     assert 'attachment; filename="dyci-claim-check-report-' in r.headers["content-disposition"]
     assert "Zyxwv" not in r.text and "Qwerty" not in r.text
     rows = list(csv.DictReader(io.StringIO(r.text)))
-    assert len(rows) == 7 * 3 and sum(int(x["checks"]) for x in rows if x["kind"] == "text") == 1
+    assert len(rows) == 7 * 3 and sum(int(x["total_verifications"]) for x in rows if x["input_type"] == "text") == 1
 
 
 def test_with_sign_in_on_the_spreadsheet_is_for_administrators(signin, monkeypatch):  # noqa: F811

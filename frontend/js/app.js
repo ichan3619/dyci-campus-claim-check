@@ -1306,7 +1306,7 @@
     var step = Math.max(1, Math.ceil(max / 4));
     var top = step * 4, bw = (W - pad.l - pad.r) / daily.length;
     var svg = svgEl("svg", { viewBox: "0 0 " + W + " " + H, class: "chart", role: "img",
-      "aria-label": "Checks per day for the last " + daily.length + " days, split into typed messages, links and pictures" });
+      "aria-label": "Verifications per day for the last " + daily.length + " days, split into typed messages, links and pictures" });
     for (var g = 0; g <= 4; g++) {
       var y = H - pad.b - (H - pad.t - pad.b) * g / 4;
       svg.appendChild(svgEl("line", { x1: pad.l, x2: W - pad.r, y1: y, y2: y, class: "grid-line" }));
@@ -1360,7 +1360,7 @@
     var matched = s.matched.text + s.matched.link + s.matched.picture;
     var answered = s.total - sum("could_not_read") - (pics.could_not_read || 0);
     var tiles = el("div", { className: "tiles" }, [
-      tile("Total checks", String(s.total), "last " + s.days + " days" +
+      tile("Total verifications", String(s.total), "last " + s.days + " days" +
         (s.all_time ? " \u00b7 " + s.all_time.total + " since " + s.all_time.since : "")),
       tile("Supported", String(sum("supported")), "an announcement agrees"),
       tile("Contradicted", String(sum("contradicted")), "an announcement conflicts"),
@@ -1371,7 +1371,7 @@
     body.appendChild(tiles);
 
     var trend = el("div", { className: "panel-card wide" }, [
-      el("h2", { className: "panel-title", text: "Checks in the last " + s.days + " days" }), dailyChart(s.daily),
+      el("h2", { className: "panel-title", text: "Verifications in the last " + s.days + " days" }), dailyChart(s.daily),
       el("ul", { className: "chart-legend" }, ["text", "link", "picture"].map(function (k) {
         return el("li", {}, [el("span", { className: "swatch " + k, attrs: { "aria-hidden": "true" } }),
           document.createTextNode(KIND_LABELS[k])]);
@@ -1387,7 +1387,7 @@
       ["level_5", "level_4", "level_3", "level_2", "level_1", "no_text", "other_page", "could_not_read"].map(function (k) {
         return [OUTCOME_LABELS[k], pics[k] || 0, "lvl-" + k];
       }), s.checks.picture));
-    grid.appendChild(barList("Kind of check",
+    grid.appendChild(barList("Input type",
       ["text", "link", "picture"].map(function (k) { return [KIND_LABELS[k], s.checks[k], "kind-" + k]; }), s.total));
     body.appendChild(grid);
     body.appendChild(reportTable(s, sum));
@@ -1397,7 +1397,7 @@
 
   // Printed report only: the totals as a plain table, readable in black and white.
   function reportTable(s, sum) {
-    var rows = [["Total checks", s.total], ["Typed messages", s.checks.text], ["Links", s.checks.link],
+    var rows = [["Total verifications", s.total], ["Typed messages", s.checks.text], ["Links", s.checks.link],
       ["Pictures", s.checks.picture]];
     ["supported", "contradicted", "not_confirmed", "withheld_language", "question", "could_not_read"].forEach(function (k) {
       rows.push(["Messages and links: " + OUTCOME_LABELS[k], sum(k)]);
