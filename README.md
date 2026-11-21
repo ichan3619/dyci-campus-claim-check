@@ -15,6 +15,10 @@ finds the matching DYCI announcement and answers:
 Pictures get a **level from 1 (conflicts with DYCI) to 5 (matches DYCI)**, with the reasons, and the file's Content
 Credentials when it has them.
 
+![A text check: the message "no classes on august 21 2030" is Supported, quoting the matching (sample) announcement](docs/screenshot.png)
+
+*A text check against the repository's sample announcements: the answer quotes the post it used.*
+
 The app never stamps anything as true. Every answer names the announcement it used, so a student can check it in one
 click, and when the announcements do not settle a claim it says so instead of guessing.
 
