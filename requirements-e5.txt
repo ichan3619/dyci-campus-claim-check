@@ -1,0 +1,1 @@
+sentence-transformers==6.1.0  # version installed in .venv312 (where the M12 runs were made)

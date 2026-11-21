@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DYCI Campus Claim Check</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#claim">Skip to the claim form</a>
+
+  <div class="shell">
+    <aside id="sidebar" class="sidebar" aria-label="Main menu">
+      <div class="brand">
+        <span class="brand-badge" aria-hidden="true">DYCI</span>
+        <div>
+          <p class="brand-name">Campus Claim Check</p>
+          <p class="brand-sub">Dr. Yanga&rsquo;s Colleges, Inc.</p>
+        </div>
+      </div>
+      <p class="nav-label">Main menu</p>
+      <nav>
+        <ul class="nav">
+          <li><button type="button" class="nav-item active" data-view="check" aria-current="page">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New check</button></li>
+          <li id="nav-dashboard" hidden><button type="button" class="nav-item" data-view="dashboard">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Dashboard</button></li>
+          <li id="nav-account" hidden><button type="button" class="nav-item" data-view="account">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>Account</button></li>
+          <li id="nav-users" hidden><button type="button" class="nav-item" data-view="users">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.2.6 3.5 2.8 3.5 6"/></svg>Users</button></li>
+          <li id="nav-sources" hidden><button type="button" class="nav-item" data-view="sources">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h10M7 17h6"/></svg>Sources<span id="nav-sources-badge" class="nav-badge" hidden></span></button></li>
+          <li id="nav-tour" hidden><button type="button" class="nav-item" id="tour-start">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4v16M5 5h11l-2 3.5L16 12H5"/></svg>Take the tour</button></li>
+          <li><a class="nav-item" href="about.html">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>About</a></li>
+        </ul>
+      </nav>
+      <p class="sidebar-foot">Answers come only from DYCI&rsquo;s own announcements. Nothing you type is stored.<br>
+        <a href="about.html">About</a> &middot; <a href="terms.html">Terms of Use</a> &middot; <a href="privacy.html">Privacy</a></p>
+    </aside>
+    <div id="scrim" class="scrim" hidden></div>
+
+    <div class="main-col">
+      <header class="topbar">
+        <button type="button" id="menu-btn" class="icon-btn" aria-controls="sidebar" aria-expanded="false" aria-label="Open the menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+        <p id="view-title" class="topbar-title">New check</p>
+        <p id="api-status" class="api-status pending" role="status">Connecting to the checker…</p>
+        <div id="account-chip" class="account-chip" hidden>
+          <span id="account-name"></span>
+          <button type="button" id="signout-btn" class="secondary small">Sign out</button>
+        </div>
+        <div id="signin-top" class="signin-top" hidden></div>
+      </header>
+
+      <main id="main">
+        <section id="view-check" class="view" aria-labelledby="check-heading">
+          <div class="grid">
+            <div class="col-main">
+              <div class="scan-card">
+                <div id="tour-banner" class="tour-banner" hidden>
+                  <span>New here? See how the checker works in about a minute.</span>
+                  <button type="button" id="tour-banner-start" class="primary small">Take the tour</button>
+                  <button type="button" id="tour-banner-close" class="icon-btn" aria-label="Hide this message">&times;</button>
+                </div>
+                <div class="card-hero">
+                  <p class="hero-kicker">DYCI Campus Claim Check</p>
+                  <h1 id="check-heading" class="scan-title">Heard something on campus?</h1>
+                  <p class="scan-lead">Check it against DYCI&rsquo;s own announcements before you pass it on.</p>
+                </div>
+                <div class="tabs" role="tablist" aria-label="What to check" id="mode-tabs">
+                  <button type="button" role="tab" id="tab-text" class="tab" aria-selected="true" data-mode="text">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h9"/></svg>Text</button>
+                  <button type="button" role="tab" id="tab-url" class="tab" aria-selected="false" data-mode="url">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>URL</button>
+                </div>
+
+                <form id="verify-form" novalidate>
+                  <label for="claim">What did you hear?</label>
+                  <textarea id="claim" name="claim" rows="4" required maxlength="1000" aria-describedby="claim-help"
+                    placeholder="Example: Classes are suspended tomorrow due to a typhoon."></textarea>
+                  <p id="claim-help" class="help">English, Tagalog or Taglish. A sentence, a fragment or a question all work.</p>
+                  <p id="claim-error" class="field-error" hidden></p>
+
+                  <div id="url-field" class="optional-link" hidden>
+                    <label for="url">Link to the announcement</label>
+                    <input id="url" name="url" type="text" inputmode="url" autocomplete="off"
+                      placeholder="https://www.facebook.com/…" aria-describedby="url-help">
+                    <p id="url-help" class="help">The message above is checked against that page only. The page is fetched
+                      for this check and not stored. It is not checked against DYCI&rsquo;s announcements.</p>
+                  </div>
+
+                  <div class="actions">
+                    <button type="submit" id="submit-btn" class="primary">Check claim</button>
+                    <button type="button" id="reset-btn" class="secondary">Clear</button>
+                  </div>
+                </form>
+
+                <!-- Screenshot check (Phase 1): hidden unless /health enables it. The picture stays in the browser for the preview;
+                     only the checked upload is sent, and the server keeps nothing. -->
+                <section id="image-check" class="image-check" hidden aria-labelledby="image-title">
+                  <h2 id="image-title" class="visually-hidden">Check a screenshot or photo of an announcement</h2>
+                  <form id="image-form" novalidate>
+                    <label for="image-file" class="drop">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="15.5" cy="9.5" r="1.5"/></svg>
+                      <span class="drop-title">Choose a screenshot or photo</span>
+                      <span class="optional">JPEG, PNG or WebP, up to 5 MB</span>
+                    </label>
+                    <input id="image-file" name="image" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="image-help">
+                    <p id="image-help" class="help">The text in the picture is read and checked against the campus announcements. This
+                      checks what the picture says, not whether the picture was edited. The picture is not stored.</p>
+                    <img id="image-preview" class="image-preview" alt="Preview of the selected picture" hidden>
+                    <p id="image-error" class="field-error" hidden></p>
+                    <div class="actions">
+                      <button type="submit" id="image-submit" class="primary">Check screenshot</button>
+                    </div>
+                  </form>
+                </section>
+              </div>
+
+              <section id="status-region" aria-live="polite" aria-atomic="true">
+                <p id="loading" class="loading" hidden></p>
+                <div id="error" class="error" role="alert" hidden tabindex="-1">
+                  <h2 id="error-title"></h2>
+                  <p id="error-message"></p>
+                  <p id="error-hint" class="help"></p>
+                  <details id="error-tech" class="error-tech" hidden>
+                    <summary>Technical details</summary>
+                    <p id="error-tech-text" class="help"></p>
+                  </details>
+                </div>
+              </section>
+
+              <section id="result" class="result" hidden aria-labelledby="result-title" tabindex="-1"></section>
+            </div>
+
+            <aside class="col-side">
+              <section id="guide" class="card" aria-labelledby="guide-title" tabindex="-1">
+                <!-- The same title, labels and words as the tour's "What the answer means" and "Always read the evidence"
+                     steps (js/app.js exampleVerdicts and tourSteps); tests/test_pages.py keeps them identical. -->
+                <h2 id="guide-title">What the answer means</h2>
+                <p class="help guide-lead">Every answer is one of these three.</p>
+                <ul class="legend">
+                  <li><span class="dot supported" aria-hidden="true"></span><div><h3>Supported</h3><p>A DYCI post agrees with the message.</p></div></li>
+                  <li><span class="dot contradicted" aria-hidden="true"></span><div><h3>Contradicted</h3><p>A DYCI post says something different.</p></div></li>
+                  <li><span class="dot insufficient" aria-hidden="true"></span><div><h3>Not confirmed</h3><p>No DYCI post settles it yet. This does not mean it is false.</p></div></li>
+                </ul>
+                <div class="guide-evidence">
+                  <h3>Always read the evidence</h3>
+                  <p>Under the answer you see the official post it came from, with its date and a link. Open it to be sure.</p>
+                </div>
+                <p class="guide-other">Tagalog or Taglish messages show the closest official posts to read, without a yes/no
+                  answer for now. Questions (&ldquo;when are the midterms?&rdquo;) show the matching post.</p>
+                <!-- Picture levels: shown only when the picture check is on; the same words as the tour's levels step
+                     (js/app.js exampleLevels); tests/test_pages.py keeps them identical. -->
+                <div id="guide-levels" class="guide-levels" hidden>
+                  <h3 class="guide-levels-title">Picture check levels</h3>
+                  <p class="help guide-lead">Screenshots and posters get a level from 5 to 1.</p>
+                  <ul class="legend">
+                    <li><span class="dot supported" aria-hidden="true"></span><div><h3>Level 5: Matches DYCI</h3><p>Every statement read from the picture matches a DYCI post, and none conflicts.</p></div></li>
+                    <li><span class="dot supported" aria-hidden="true"></span><div><h3>Level 4: Mostly matches</h3><p>Some statements match a DYCI post and none conflicts; the rest couldn’t be checked.</p></div></li>
+                    <li><span class="dot insufficient" aria-hidden="true"></span><div><h3>Level 3: Can’t confirm</h3><p>Nothing clearly matches or conflicts. Often the text was hard to read, or DYCI hasn’t posted about it. This does not mean it is fake.</p></div></li>
+                    <li><span class="dot sketchy" aria-hidden="true"></span><div><h3>Level 2: Sketchy</h3><p>It looks official, but something in it doesn’t fit DYCI’s posts. Check DYCI’s page before sharing.</p></div></li>
+                    <li><span class="dot contradicted" aria-hidden="true"></span><div><h3>Level 1: Conflicts with DYCI</h3><p>A DYCI post clearly says something different.</p></div></li>
+                  </ul>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </section>
+
+        <!-- Sign in with Google, DYCI accounts only (CAMPUS_VERIFY_AUTH=google): hidden unless /health says so. -->
+        <section id="view-signin" class="view landing" hidden aria-labelledby="signin-heading">
+          <div class="landing-hero">
+            <p class="hero-kicker landing-kicker">DYCI Campus Claim Check</p>
+            <h1 id="signin-heading">Heard something on campus? Check it before you pass it on.</h1>
+            <p class="landing-lead">Compare any message, screenshot or link with Dr. Yanga&rsquo;s Colleges&rsquo; own
+              official announcements, in seconds.</p>
+            <div id="google-btn" class="google-btn"></div>
+            <p class="landing-note">For the DYCI community: sign in with your <strong id="signin-domain">@dyci.edu.ph</strong>
+              Google account.</p>
+            <p id="signin-error" class="field-error" role="alert" hidden></p>
+          </div>
+          <div class="landing-grid">
+            <div class="landing-tile"><span class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9"/></svg></span><h2>Type it</h2><p>Write what you heard, in English, Tagalog or Taglish.</p></div>
+            <div class="landing-tile"><span class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/></svg></span><h2>Screenshot it</h2><p>Upload a picture of an announcement; its text and photo are checked.</p></div>
+            <div class="landing-tile"><span class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><h2>Link it</h2><p>Paste a link to a post and check your message against it.</p></div>
+          </div>
+          <div class="landing-answers">
+            <h2>Answers you can trust, with the source</h2>
+            <ul>
+              <li><span class="dot supported" aria-hidden="true"></span><strong>Yes</strong> &mdash; a DYCI post backs it</li>
+              <li><span class="dot contradicted" aria-hidden="true"></span><strong>No</strong> &mdash; DYCI&rsquo;s post says otherwise</li>
+              <li><span class="dot insufficient" aria-hidden="true"></span><strong>Not confirmed yet</strong> &mdash; nothing settles it, so don&rsquo;t share it yet</li>
+            </ul>
+            <p class="help">Every answer shows the official post, its date and a link.</p>
+          </div>
+          <div class="scan-card signin-card">
+            <p class="help"><a href="about.html">About</a> &middot; <a href="terms.html">Terms of Use</a> &middot;
+              <a href="privacy.html">Privacy Notice</a></p>
+            <p class="help">Google confirms who you are; this site never sees your password. It keeps your DYCI email,
+              your name and when you signed in, so that only DYCI accounts can use it. It does not keep what you check
+              unless you turn on history in your account.</p>
+            <p class="help"><strong>By signing in you agree to the <a href="terms.html" target="_blank" rel="noopener">Terms
+              of Use</a> and the <a href="privacy.html" target="_blank" rel="noopener">Privacy Notice</a>.</strong></p>
+          </div>
+        </section>
+
+        <section id="view-account" class="view" hidden aria-labelledby="account-heading">
+          <div class="account-wrap">
+            <div class="account-hero">
+              <div id="acct-avatar" class="avatar" aria-hidden="true"></div>
+              <div class="account-who">
+                <h1 id="account-heading" class="account-name"><span id="acct-name"></span></h1>
+                <p class="account-email"><span id="acct-email"></span></p>
+                <p class="account-meta"><span id="acct-role" class="role-badge"></span>
+                  <span id="acct-since"></span></p>
+              </div>
+              <button type="button" id="signout-btn-2" class="secondary">Sign out</button>
+            </div>
+
+            <section class="account-card" aria-labelledby="privacy-heading">
+              <h2 id="privacy-heading">Privacy &amp; history</h2>
+              <div class="switch-row">
+                <div>
+                  <p class="switch-title">Keep a history of my checks</p>
+                  <p class="help">Off by default. When on, the messages and links you check are kept under
+                    <strong>My checks</strong> so you can see them again. Only you can see them. Pictures are never kept.
+                    The newest 50 are kept, each for 90 days.</p>
+                </div>
+                <label class="switch" for="history-toggle">
+                  <input type="checkbox" id="history-toggle" role="switch">
+                  <span class="switch-track" aria-hidden="true"></span>
+                  <span class="visually-hidden">Keep a history of my checks</span>
+                </label>
+              </div>
+              <p id="history-status" class="help" role="status"></p>
+            </section>
+
+            <section class="account-card" id="checks-card" aria-labelledby="checks-heading" hidden>
+              <div class="checks-head">
+                <h2 id="checks-heading">My checks</h2>
+                <button type="button" id="checks-clear" class="secondary small" hidden>Clear all</button>
+              </div>
+              <p class="help">Each answer is what the checker said <em>on that day</em>. Posts and dates change, so use
+                <strong>Check again</strong> for today&rsquo;s answer.</p>
+              <p id="checks-status" class="help" role="status"></p>
+              <ol id="checks-list" class="checks-list"></ol>
+            </section>
+
+            <section class="account-card" aria-labelledby="data-heading">
+              <h2 id="data-heading">Your data</h2>
+              <p class="help">We keep your DYCI email, your name and when you signed in. Never your password, and never
+                what you check unless history is on.
+                <a href="privacy.html" target="_blank" rel="noopener">Read the privacy notice</a>.</p>
+            </section>
+
+            <section class="account-card danger-zone" aria-labelledby="danger-heading">
+              <h2 id="danger-heading">Danger zone</h2>
+              <div class="switch-row">
+                <div>
+                  <p class="switch-title">Delete my account</p>
+                  <p class="help">Erases your name, email, sign-in record, history choice and saved checks. This cannot
+                    be undone.</p>
+                </div>
+                <button type="button" id="delete-account-btn" class="danger-btn">Delete account</button>
+              </div>
+              <p id="delete-status" class="help" role="status"></p>
+            </section>
+          </div>
+
+          <dialog id="delete-dialog" class="confirm-dialog" aria-labelledby="delete-title">
+            <h2 id="delete-title">Delete your account?</h2>
+            <p>This erases your name, DYCI email, sign-in record, history choice and saved checks from the checker. You can sign in
+              again later, which creates a new account.</p>
+            <ol class="confirm-steps">
+              <li><label for="delete-confirm">Type <strong>DELETE</strong> to confirm</label>
+                <input id="delete-confirm" type="text" autocomplete="off" spellcheck="false"></li>
+              <li><span>Confirm it is you with Google</span>
+                <div id="delete-google-btn" class="google-btn" hidden></div>
+                <p id="delete-google-hint" class="help">Available after you type DELETE.</p></li>
+            </ol>
+            <p id="delete-error" class="field-error" role="alert" hidden></p>
+            <div class="actions">
+              <button type="button" id="delete-cancel" class="secondary">Cancel</button>
+            </div>
+          </dialog>
+        </section>
+
+        <section id="view-users" class="view" hidden aria-labelledby="users-heading">
+          <div class="dash-head">
+            <div>
+              <h1 id="users-heading" class="scan-title">Users</h1>
+              <p class="scan-lead">DYCI accounts that have signed in. Disabling an account signs it out and blocks sign-in.
+                Administrators are set by the server owner.</p>
+            </div>
+            <button type="button" id="users-refresh" class="secondary">Refresh</button>
+          </div>
+          <p id="users-status" class="loading" role="status"></p>
+          <div id="users-body" class="table-wrap"></div>
+        </section>
+
+        <section id="view-sources" class="view" hidden aria-labelledby="sources-heading">
+          <div class="dash-head">
+            <h1 id="sources-heading" class="scan-title">Sources</h1>
+            <p class="scan-lead">The official Facebook pages the checker collects announcements from. Tokens are stored
+              encrypted and are never shown again after you save them.</p>
+          </div>
+          <div class="dash-controls" role="toolbar" aria-label="Sources">
+            <p id="sources-summary" class="control-label"></p>
+            <button type="button" id="sources-refresh" class="secondary">Refresh</button>
+          </div>
+          <div id="sources-alert" class="alert-card" role="alert" hidden></div>
+          <p id="sources-status" class="loading" role="status"></p>
+          <div id="sources-body" class="table-wrap"></div>
+
+          <div class="sources-grid">
+            <section class="account-card" aria-labelledby="add-source-heading">
+              <h2 id="add-source-heading">Add a page</h2>
+              <form id="add-source-form" class="source-form" autocomplete="off">
+                <label for="source-page-id">Page ID</label>
+                <input id="source-page-id" type="text" inputmode="numeric" placeholder="e.g. 100064123456789" required>
+                <label for="source-tier">Trust level</label>
+                <select id="source-tier">
+                  <option value="official">Official (DYCI&rsquo;s own pages)</option>
+                  <option value="recognized">Recognized (departments, councils)</option>
+                  <option value="unverified">Unverified</option>
+                </select>
+                <label for="source-token">Page access token</label>
+                <input id="source-token" type="password" autocomplete="off" spellcheck="false" required>
+                <p class="help">Given by a person who manages the page. The checker asks Meta to confirm it reads this
+                  page before saving, and takes the page&rsquo;s name from Meta.</p>
+                <p id="add-source-status" class="help" role="status"></p>
+                <button type="submit" class="primary">Check with Meta and add</button>
+              </form>
+            </section>
+            <section class="account-card" aria-labelledby="source-log-heading">
+              <h2 id="source-log-heading">Recent activity</h2>
+              <ol id="sources-log" class="source-log"></ol>
+            </section>
+          </div>
+
+          <dialog id="token-dialog" class="confirm-dialog" aria-labelledby="token-title">
+            <h2 id="token-title">Replace token</h2>
+            <p id="token-for" class="help"></p>
+            <form id="token-form" autocomplete="off">
+              <label for="token-input">New page access token</label>
+              <input id="token-input" type="password" autocomplete="off" spellcheck="false" required>
+              <p id="token-error" class="field-error" role="alert" hidden></p>
+              <div class="actions">
+                <button type="button" id="token-cancel" class="secondary">Cancel</button>
+                <button type="submit" class="primary">Check with Meta and save</button>
+              </div>
+            </form>
+          </dialog>
+        </section>
+
+        <section id="view-dashboard" class="view" hidden aria-labelledby="dash-heading">
+          <div class="dash-head">
+            <div>
+              <h1 id="dash-heading" class="scan-title">Platform overview</h1>
+              <p class="scan-lead">How the checker has been used. Counts only: no message, link or address is stored.
+                Counts are kept for 400 days.</p>
+            </div>
+          </div>
+          <div class="dash-controls" role="toolbar" aria-label="Dashboard period and report">
+            <div class="control-group">
+              <label for="dash-range" class="control-label">Period</label>
+              <select id="dash-range">
+                <option value="7" selected>Last 7 days</option>
+                <option value="30">Last 30 days</option>
+                <option value="90">Last 90 days</option>
+                <option value="400">All kept (400 days)</option>
+              </select>
+              <button type="button" id="dash-refresh" class="secondary">Refresh</button>
+            </div>
+            <div class="control-group">
+              <button type="button" id="dash-csv" class="secondary">Download CSV</button>
+              <button type="button" id="dash-print" class="primary">Print / Save as PDF</button>
+            </div>
+          </div>
+          <!-- Printed report only (panel request 2026-10-29): filled by js/app.js when the counts load. -->
+          <div class="print-only report-head" aria-hidden="true">
+            <p class="report-org">Dr. Yanga&rsquo;s Colleges, Inc. &middot; DYCI Campus Claim Check</p>
+            <h1 class="report-title">Usage report</h1>
+            <p id="report-period"></p>
+            <p id="report-made"></p>
+          </div>
+          <div id="dash-sources-alert" class="alert-card" role="alert" hidden></div>
+          <p id="dash-status" class="loading" role="status"></p>
+          <p id="dash-csv-status" class="help" role="status"></p>
+          <div id="dash-body"></div>
+          <div class="print-only report-foot" aria-hidden="true">
+            <p>Counts only: no message, link, picture, name or address is stored. &ldquo;Not confirmed&rdquo; does not mean
+              false, and &ldquo;contradicted&rdquo; is not a count of fake news. For DYCI use.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>Verdicts describe how the announcements found relate to the claim: <strong>SUPPORTED</strong>,
+          <strong>CONTRADICTED</strong> or <strong>INSUFFICIENT_EVIDENCE</strong>. Insufficient evidence does not mean a
+          claim is false.</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Guided tour (CAMPUS_VERIFY_TOUR): built and shown by js/app.js only while the tour runs. -->
+  <div id="tour" class="tour" hidden>
+    <div id="tour-spot" class="tour-spot" aria-hidden="true"></div>
+    <div id="tour-card" class="tour-card" role="dialog" aria-modal="true" aria-labelledby="tour-title" tabindex="-1">
+      <p id="tour-step" class="tour-step"></p>
+      <h2 id="tour-title"></h2>
+      <div id="tour-body"></div>
+      <div id="tour-dots" class="tour-dots" aria-hidden="true"></div>
+      <div class="tour-actions">
+        <button type="button" id="tour-skip" class="link-btn">Skip tour</button>
+        <span class="tour-gap"></span>
+        <button type="button" id="tour-back" class="secondary small">Back</button>
+        <button type="button" id="tour-next" class="primary small">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

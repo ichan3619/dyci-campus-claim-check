@@ -1,0 +1,26 @@
+pytest==8.3.3
+scikit-learn==1.5.2
+joblib==1.4.2
+torch==2.14.0
+transformers==5.16.1
+requests==2.33.1
+beautifulsoup4==4.14.3
+fastapi==0.141.1
+uvicorn==0.54.0
+httpx==0.28.1
+sentencepiece>=0.2.2
+# Image Check Phase 1 (CAMPUS_VERIFY_IMAGE, default off; owner-approved 2026-10-13). Installed with torch==2.14.0,
+# numpy==2.5.3 and transformers==5.16.1 held fixed. Pulled in by easyocr: torchvision==0.29.1, opencv-python-headless==5.0.0.93,
+# scikit-image==0.26.0, shapely==2.2.0, pyclipper==1.4.0, python-bidi==0.6.11, ninja==1.13.2, ImageIO==2.38.1,
+# lazy-loader==0.6, tifffile==2026.9.20. OCR model files (downloaded once to ~/.EasyOCR/model, SHA-256 checked at load):
+# craft_mlt_25k.pth (detection), latin_g2.pth (recognition) - see src/image/ocr.py MODEL_FILES.
+pillow==12.2.0
+easyocr==1.7.2
+# Photo check (Phase 2A, owner decision 2026-10-24): src/image/photo_match.py imports these directly. Same versions
+# easyocr already pulls in; pinned here so a deployment never depends on that.
+opencv-python-headless==5.0.0.93
+scipy==1.18.1
+# Provenance facts (Phase 2B P1, CAMPUS_VERIFY_IMAGE_PROVENANCE, default off; owner-approved 2026-10-26): reads Content
+# Credentials (C2PA). MIT OR Apache-2.0; prerelease API, so pinned exactly. Pulls in cryptography==50.0.2, cffi==2.1.1,
+# pycparser==3.12, toml==0.10.2.
+c2pa-python==0.38.0

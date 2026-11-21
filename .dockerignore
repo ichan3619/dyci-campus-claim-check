@@ -1,0 +1,15 @@
+# Allow-list: everything is excluded, then only what the Dockerfile copies is let back in.
+# This keeps participant messages, labelling sheets, evaluation images, results and local tools out of any image.
+*
+!Dockerfile
+!requirements-lock.txt
+!src/
+!scripts/download_models.py
+!scripts/m12_retrieval/m12_3_normalizer.py
+!frontend/
+!data/corpus/mock_facebook_corpus.jsonl
+!data/corpus/independent_announcements.jsonl
+!data/corpus/dev2_announcements.jsonl
+!data/source_map.csv
+!data/dev/sample_claims.csv
+**/__pycache__

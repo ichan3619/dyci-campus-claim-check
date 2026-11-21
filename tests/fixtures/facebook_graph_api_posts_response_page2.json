@@ -1,0 +1,17 @@
+{
+  "_fixture_note": "SYNTHETIC test fixture only -- a hypothetical SECOND page of results, used solely to prove MetaGraphAPIAdapter.fetch_posts() does NOT follow paging.next in Milestone 8.5. Not real DYCI content.",
+  "data": [
+    {
+      "id": "1000000000000_2000000000099",
+      "message": "This post lives on a second page and must NOT appear in fetch_posts() results for Milestone 8.5.",
+      "created_time": "2026-05-01T08:00:00+0000",
+      "permalink_url": "https://www.facebook.com/example.page/posts/2000000000099"
+    }
+  ],
+  "paging": {
+    "cursors": {
+      "before": "beforeCursorPlaceholder2",
+      "after": "afterCursorPlaceholder2"
+    }
+  }
+}

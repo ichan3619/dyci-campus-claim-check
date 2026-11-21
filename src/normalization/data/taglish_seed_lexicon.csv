@@ -1,0 +1,61 @@
+surface,canonical,tier,context_any,needs_adjacent_number,status,note,inherent_negation
+hnd,hindi,1,,0,SEED_UNREVIEWED,vowel-dropped spelling of hindi,0
+nde,hindi,1,,0,SEED_UNREVIEWED,phonetic chat spelling of hindi,0
+wla,wala,1,,0,SEED_UNREVIEWED,vowel-dropped spelling,0
+wlang,walang,1,,0,SEED_UNREVIEWED,vowel-dropped spelling,0
+sna,sana,1,,0,SEED_UNREVIEWED,vowel-dropped spelling,0
+lng,lang,1,,0,SEED_UNREVIEWED,vowel-dropped spelling,0
+pde,pwede,1,,0,SEED_UNREVIEWED,chat spelling,0
+pwde,pwede,1,,0,SEED_UNREVIEWED,chat spelling,0
+kc,kasi,1,,0,SEED_UNREVIEWED,abbreviation,0
+kse,kasi,1,,0,SEED_UNREVIEWED,chat spelling,0
+cge,sige,1,,0,SEED_UNREVIEWED,chat spelling,0
+sge,sige,1,,0,SEED_UNREVIEWED,chat spelling,0
+pls,please,1,,0,SEED_UNREVIEWED,English shorthand,0
+plz,please,1,,0,SEED_UNREVIEWED,English shorthand,0
+dun,doon,1,,0,SEED_UNREVIEWED,informal demonstrative,0
+d2,dito,1,,0,SEED_UNREVIEWED,digit-for-syllable spelling,0
+yun,iyon,1,,0,SEED_UNREVIEWED,informal demonstrative,0
+pano,paano,1,,0,SEED_UNREVIEWED,informal interrogative,0
+kelan,kailan,1,,0,SEED_UNREVIEWED,informal interrogative,0
+bkt,bakit,1,,0,SEED_UNREVIEWED,vowel-dropped spelling,0
+bkit,bakit,1,,0,SEED_UNREVIEWED,vowel-dropped spelling,0
+mron,mayroon,1,,0,SEED_UNREVIEWED,informal existential; bridges chat register to formal announcement register,0
+meron,mayroon,1,,0,SEED_UNREVIEWED,informal existential; formal announcements usually write mayroon,0
+merong,mayroong,1,,0,SEED_UNREVIEWED,informal existential + linker,0
+tmrw,tomorrow,1,,0,SEED_UNREVIEWED,English shorthand,0
+tmr,tomorrow,1,,0,SEED_UNREVIEWED,English shorthand,0
+2morrow,tomorrow,1,,0,SEED_UNREVIEWED,digit-for-syllable spelling,0
+2moro,tomorrow,1,,0,SEED_UNREVIEWED,digit-for-syllable spelling,0
+ngaun,ngayon,1,,0,SEED_UNREVIEWED,chat spelling,0
+ngayun,ngayon,1,,0,SEED_UNREVIEWED,chat spelling,0
+bkas,bukas,1,,0,SEED_UNREVIEWED,vowel-dropped spelling,0
+bka,baka,1,,0,SEED_UNREVIEWED,vowel-dropped spelling,0
+dpat,dapat,1,,0,SEED_UNREVIEWED,vowel-dropped spelling,0
+kht,kahit,1,,0,SEED_UNREVIEWED,vowel-dropped spelling,0
+kng,kung,1,,0,SEED_UNREVIEWED,vowel-dropped spelling,0
+dhil,dahil,1,,0,SEED_UNREVIEWED,vowel-dropped spelling,0
+wag,huwag,1,,0,SEED_UNREVIEWED,informal negative imperative; counted as a negator by the guard,0
+sched,schedule,1,,0,SEED_UNREVIEWED,campus shorthand,0
+sem,semester,1,,0,SEED_UNREVIEWED,campus shorthand,0
+hrs,hours,1,,0,SEED_UNREVIEWED,unit abbreviation,0
+mins,minutes,1,,0,SEED_UNREVIEWED,unit abbreviation,0
+jan,January,2,,1,SEED_UNREVIEWED,month abbreviation; only next to a number,0
+feb,February,2,,1,SEED_UNREVIEWED,month abbreviation; only next to a number,0
+mar,March,2,,1,SEED_UNREVIEWED,month abbreviation; only next to a number,0
+apr,April,2,,1,SEED_UNREVIEWED,month abbreviation; only next to a number,0
+jun,June,2,,1,SEED_UNREVIEWED,month abbreviation; only next to a number,0
+jul,July,2,,1,SEED_UNREVIEWED,month abbreviation; only next to a number,0
+aug,August,2,,1,SEED_UNREVIEWED,month abbreviation; only next to a number,0
+sep,September,2,,1,SEED_UNREVIEWED,month abbreviation; only next to a number,0
+sept,September,2,,1,SEED_UNREVIEWED,month abbreviation; only next to a number,0
+oct,October,2,,1,SEED_UNREVIEWED,month abbreviation; only next to a number,0
+nov,November,2,,1,SEED_UNREVIEWED,month abbreviation; only next to a number,0
+dec,December,2,,1,SEED_UNREVIEWED,month abbreviation; only next to a number,0
+wp,walang pasok,2,bukas|bkas|tomorrow|tmrw|ngayon|ngaun|class|classes|klase|sir|maam|ma'am|po|suspended|suspension|bagyo|signal,0,SEED_UNREVIEWED,student shorthand for walang pasok; also 'well played' in gaming chat so a campus-context word is required,1
+may,,0,,0,SEED_UNREVIEWED,AMBIGUOUS: Tagalog existential 'may' vs month May. Never rewritten,0
+san,,0,,0,SEED_UNREVIEWED,AMBIGUOUS: saan vs San- in place names,0
+pwd,,0,,0,SEED_UNREVIEWED,AMBIGUOUS: pwede vs PWD (person with disability),0
+pd,,0,,0,SEED_UNREVIEWED,AMBIGUOUS: pwede vs PD abbreviations,0
+tom,,0,,0,SEED_UNREVIEWED,AMBIGUOUS: tomorrow vs the name Tom,0
+d,,0,,0,SEED_UNREVIEWED,AMBIGUOUS: hindi vs a bare letter or initial,0
